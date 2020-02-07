@@ -1,0 +1,91 @@
+#1
+题目描述:
+Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+边界范围:
+Input an array with all integers has range of  0 < n < 1000
+
+题目示例:
+Given nums = [2, 7, 11, 15], target = 9,
+Because nums[0] + nums[1] = 2 + 7 = 9,
+return [0, 1].
+
+题解代码:
+public int[] twoSum(int[] nums, int target) {
+    Map<Integer, Integer> map = new HashMap<>();
+    for (int i = 0; i < nums.length; i++) {
+        int complement = target - nums[i];
+        if (map.containsKey(complement)) {
+            return new int[] { map.get(complement), i };
+        }
+        map.put(nums[i], i);
+    }
+    throw new IllegalArgumentException("No two sum solution");
+}
+
+解释:
+此题利用哈希表性质，将当前指针的值与目标的差存在哈希表，用一遍遍历找到答案的下标(index)
+
+#2
+题目描述:
+You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse
+order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
+
+边界范围:
+You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+
+题目示例:
+Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
+Output: 7 -> 0 -> 8
+Explanation: 342 + 465 = 807.
+
+题解代码:
+public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+    ListNode dummyHead = new ListNode(0);
+    ListNode p = l1, q = l2, curr = dummyHead;
+    int carry = 0;
+    while (p != null || q != null) {
+        int x = (p != null) ? p.val : 0;
+        int y = (q != null) ? q.val : 0;
+        int sum = carry + x + y;
+        carry = sum / 10;
+        curr.next = new ListNode(sum % 10);
+        curr = curr.next;
+        if (p != null) p = p.next;
+        if (q != null) q = q.next;
+    }
+    if (carry > 0) {
+        curr.next = new ListNode(carry);
+    }
+    return dummyHead.next;
+}
+
+#3
+题目描述:
+Given a string, find the length of the longest substring without repeating characters.
+
+边界范围:
+any string that length < 1000
+
+题目示例:
+Input: "abcabcbb"
+Output: 3
+Explanation: The answer is "abc", with the length of 3.
+
+题解代码:
+// 待解题
+
+附加题以及题解：
+如果String很大怎么办，超过一台机器的容量？
+
+#4
+题目描述:
+
+边界范围:
+
+题目示例:
+
+题解代码:
+
+附加题以及题解：
